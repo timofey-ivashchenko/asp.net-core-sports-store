@@ -8,17 +8,17 @@
 		"windowsAuthentication": false
 	},
 	"profiles": {
-		"IIS Express": {
-			"commandName": "IISExpress",
+		"SportsStore": {
+			"applicationUrl": "http://localhost:9923",
+			"commandName": "Project",
+			"dotnetRunMessages": true,
 			"environmentVariables": {
 				"ASPNETCORE_ENVIRONMENT": "Development"
 			},
 			"launchBrowser": true
 		},
-		"SportsStore": {
-			"applicationUrl": "http://localhost:9923",
-			"commandName": "Project",
-			"dotnetRunMessages": true,
+		"IIS Express": {
+			"commandName": "IISExpress",
 			"environmentVariables": {
 				"ASPNETCORE_ENVIRONMENT": "Development"
 			},
