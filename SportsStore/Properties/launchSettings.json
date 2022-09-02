@@ -1,0 +1,28 @@
+{
+	"iisSettings": {
+		"anonymousAuthentication": true,
+		"iisExpress": {
+			"applicationUrl": "http://localhost:1315",
+			"sslPort": 0
+		},
+		"windowsAuthentication": false
+	},
+	"profiles": {
+		"IIS Express": {
+			"commandName": "IISExpress",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			},
+			"launchBrowser": true
+		},
+		"SportsStore": {
+			"applicationUrl": "http://localhost:9923",
+			"commandName": "Project",
+			"dotnetRunMessages": true,
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			},
+			"launchBrowser": true
+		}
+	}
+}
