@@ -2,14 +2,14 @@
 	"iisSettings": {
 		"anonymousAuthentication": true,
 		"iisExpress": {
-			"applicationUrl": "http://localhost:1315",
+			"applicationUrl": "http://localhost:5000",
 			"sslPort": 0
 		},
 		"windowsAuthentication": false
 	},
 	"profiles": {
 		"SportsStore": {
-			"applicationUrl": "http://localhost:9923",
+			"applicationUrl": "http://localhost:5000",
 			"commandName": "Project",
 			"dotnetRunMessages": true,
 			"environmentVariables": {
