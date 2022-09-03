@@ -1,6 +1,10 @@
 ﻿var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Welcome to SportsStore!");
+app.UseStaticFiles();
+app.MapDefaultControllerRoute();
 
 app.Run();
