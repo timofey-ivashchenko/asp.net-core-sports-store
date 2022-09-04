@@ -17,32 +17,34 @@ public class Initial : Migration
 			.Entity<Product>(builder =>
 			{
 				builder
-					.Property<long?>("Id")
+					.Property<long?>(nameof(Product.Id))
 					.HasColumnType("bigint")
 					.UseIdentityColumn(1L, 1)
 					.ValueGeneratedOnAdd();
 
 				builder
-					.Property<string>("Name")
+					.Property<string>(nameof(Product.Name))
 					.HasColumnType("nvarchar(max)")
 					.IsRequired();
 
 				builder
-					.Property<string>("Description")
+					.Property<string>(nameof(Product.Description))
 					.HasColumnType("nvarchar(max)")
 					.IsRequired();
 
 				builder
-					.Property<string>("Category")
+					.Property<string>(nameof(Product.Category))
 					.HasColumnType("nvarchar(max)")
 					.IsRequired();
 
 				builder
-					.Property<decimal>("Price")
+					.Property<decimal>(nameof(Product.Price))
 					.HasColumnType("decimal(8,2)")
 					.IsRequired();
 
-				builder.ToTable("Products").HasKey("Id");
+				builder
+					.ToTable("Products")
+					.HasKey(nameof(Product.Id));
 			});
 
 	protected override void Down(MigrationBuilder migrationBuilder) =>
