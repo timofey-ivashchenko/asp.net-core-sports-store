@@ -9,6 +9,8 @@ builder.Services.AddDbContext<StoreDbContext>(
 	options => options.UseSqlServer(
 		builder.Configuration["ConnectionStrings:Main"]));
 
+builder.Services.AddScoped<IStoreRepository, EfStoreRepository>();
+
 var app = builder.Build();
 
 app.UseStaticFiles();
