@@ -5,6 +5,7 @@ using SportsStore.Models;
 namespace SportsStore.Migrations;
 
 [DbContext(typeof(StoreDbContext))]
+// ReSharper disable UnusedMember.Global
 class StoreDbContextModelSnapshot : ModelSnapshot
 {
 	protected override void BuildModel(ModelBuilder modelBuilder) =>
