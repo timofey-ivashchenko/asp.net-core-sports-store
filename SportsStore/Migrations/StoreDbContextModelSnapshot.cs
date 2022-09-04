@@ -2,17 +2,12 @@
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using SportsStore.Models;
 
-#nullable disable
-
 namespace SportsStore.Migrations;
 
 [DbContext(typeof(StoreDbContext))]
 class StoreDbContextModelSnapshot : ModelSnapshot
 {
-	protected override void BuildModel(ModelBuilder modelBuilder)
-	{
-#pragma warning disable 612, 618
-
+	protected override void BuildModel(ModelBuilder modelBuilder) =>
 		modelBuilder
 			.HasAnnotation("ProductVersion", "6.0.8")
 			.HasAnnotation("Relational:MaxIdentifierLength", "128")
@@ -47,7 +42,4 @@ class StoreDbContextModelSnapshot : ModelSnapshot
 
 				builder.ToTable("Products").HasKey("Id");
 			});
-
-#pragma warning restore 612, 618
-	}
 }

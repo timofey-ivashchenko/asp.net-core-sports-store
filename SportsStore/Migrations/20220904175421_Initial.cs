@@ -3,18 +3,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using SportsStore.Models;
 
-#nullable disable
-
 namespace SportsStore.Migrations;
 
 [DbContext(typeof(StoreDbContext))]
 [Migration("20220904175421_Initial")]
 public class Initial : Migration
 {
-	protected override void BuildTargetModel(ModelBuilder modelBuilder)
-	{
-#pragma warning disable 612, 618
-
+	protected override void BuildTargetModel(ModelBuilder modelBuilder) =>
 		modelBuilder
 			.HasAnnotation("ProductVersion", "6.0.8")
 			.HasAnnotation("Relational:MaxIdentifierLength", "128")
@@ -49,9 +44,6 @@ public class Initial : Migration
 
 				builder.ToTable("Products").HasKey("Id");
 			});
-
-#pragma warning restore 612, 618
-	}
 
 	protected override void Down(MigrationBuilder migrationBuilder) =>
 		migrationBuilder.DropTable(name: "Products");
