@@ -12,7 +12,7 @@ public class Initial : Migration
 	protected override void BuildTargetModel(ModelBuilder modelBuilder) =>
 		modelBuilder
 			.HasAnnotation("ProductVersion", "6.0.8")
-			.HasAnnotation("Relational:MaxIdentifierLength", "128")
+			.HasAnnotation("Relational:MaxIdentifierLength", 128)
 			.UseIdentityColumns(1L, 1)
 			.Entity<Product>(builder =>
 			{

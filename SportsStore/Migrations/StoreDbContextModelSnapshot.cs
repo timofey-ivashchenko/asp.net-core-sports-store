@@ -11,7 +11,7 @@ class StoreDbContextModelSnapshot : ModelSnapshot
 	protected override void BuildModel(ModelBuilder modelBuilder) =>
 		modelBuilder
 			.HasAnnotation("ProductVersion", "6.0.8")
-			.HasAnnotation("Relational:MaxIdentifierLength", "128")
+			.HasAnnotation("Relational:MaxIdentifierLength", 128)
 			.UseIdentityColumns()
 			.Entity<Product>(builder =>
 			{
