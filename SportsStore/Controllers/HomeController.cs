@@ -5,12 +5,12 @@ namespace SportsStore.Controllers;
 
 public class HomeController : Controller
 {
-	const int PageSize = 4;
-
 	readonly IStoreRepository _repository;
 
 	public HomeController(IStoreRepository repository) =>
 		_repository = repository;
+
+	public int PageSize { get; set; } = 5;
 
 	public IActionResult Index(int page = 1)
 	{
