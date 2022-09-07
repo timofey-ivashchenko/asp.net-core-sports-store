@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportsStore.Controllers;
 using SportsStore.Models;
+using SportsStore.Models.ViewModels;
 
 namespace SportsStore.Tests;
 
@@ -74,6 +75,43 @@ public class HomeControllerTests
 			Assert.Equal(expectedProduct.Category, actualProduct.Category);
 			Assert.Equal(expectedProduct.Price, actualProduct.Price);
 		}
+	}
+
+	[Fact]
+	public void CanSendPaginationViewModel()
+	{
+		// Arrange.
+
+		var repository = new Mock<IStoreRepository>();
+
+		repository.Setup(x => x.Products)
+			.Returns(new Product[]
+			{
+				new() { Id = 1, Name = "Product 1" },
+				new() { Id = 2, Name = "Product 2" },
+				new() { Id = 3, Name = "Product 3" },
+				new() { Id = 4, Name = "Product 4" },
+				new() { Id = 5, Name = "Product 5" }
+			}.AsQueryable());
+
+		var controller = new HomeController(repository.Object)
+		{
+			PageSize = 3
+		};
+
+		// Act.
+
+		var result = controller.Index(2) as ViewResult;
+		var model = result?.ViewData.Model as ProductsListViewModel;
+		var pagingInfo = model?.PagingInfo;
+
+		// Assert.
+
+		Assert.NotNull(pagingInfo);
+		Assert.Equal(2, pagingInfo.CurrentPage);
+		Assert.Equal(3, pagingInfo.ItemsPerPage);
+		Assert.Equal(5, pagingInfo.TotalItems);
+		Assert.Equal(2, pagingInfo.TotalPages);
 	}
 
 	[Fact]
