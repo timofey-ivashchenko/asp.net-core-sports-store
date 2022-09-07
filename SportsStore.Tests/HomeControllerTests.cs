@@ -56,8 +56,8 @@ public class HomeControllerTests
 		// Act.
 
 		var result = controller.Index(page) as ViewResult;
-		var model = result?.ViewData.Model as IEnumerable<Product>;
-		var actualProducts = model?.ToArray() ?? Array.Empty<Product>();
+		var model = result?.ViewData.Model as ProductsListViewModel;
+		var actualProducts = model?.Products.ToArray() ?? Array.Empty<Product>();
 
 		// Assert.
 
@@ -133,8 +133,8 @@ public class HomeControllerTests
 		// Act.
 
 		var result = controller.Index() as ViewResult;
-		var model = result?.ViewData.Model as IEnumerable<Product>;
-		var products = model?.ToArray() ?? Array.Empty<Product>();
+		var model = result?.ViewData.Model as ProductsListViewModel;
+		var products = model?.Products.ToArray() ?? Array.Empty<Product>();
 
 		// Assert.
 
