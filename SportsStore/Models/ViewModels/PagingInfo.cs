@@ -1,6 +1,6 @@
 ﻿namespace SportsStore.Models.ViewModels;
 
-class PagingInfo
+public class PagingInfo
 {
 	public int CurrentPage { get; set; }
 
