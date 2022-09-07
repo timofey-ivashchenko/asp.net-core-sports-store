@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
+using SportsStore.Models.ViewModels;
 
 namespace SportsStore.Controllers;
 
@@ -21,6 +22,19 @@ public class HomeController : Controller
 			.Skip((page - 1) * PageSize)
 			.Take(PageSize);
 
-		return View(products);
+		var pagingInfo = new PagingInfo
+		{
+			CurrentPage = page,
+			ItemsPerPage = PageSize,
+			TotalItems = _repository.Products.Count()
+		};
+
+		var model = new ProductsListViewModel
+		{
+			PagingInfo = pagingInfo,
+			Products = products
+		};
+
+		return View(model);
 	}
 }
