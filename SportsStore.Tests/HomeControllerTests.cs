@@ -29,6 +29,49 @@ public class HomeControllerTests
 		{3, Array.Empty<Product>()}
 	};
 
+	[Fact]
+	public void CanFilterProducts()
+	{
+		// Arrange.
+
+		var repository = new Mock<IStoreRepository>();
+
+		repository.Setup(x => x.Products).Returns(
+			new Product[]
+			{
+				new() { Name = "P1", Category = "C1" },
+				new() { Name = "P2", Category = "C2" },
+				new() { Name = "P3", Category = "C1" },
+				new() { Name = "P4", Category = "C3" },
+				new() { Name = "P5", Category = "C1" }
+			}.AsQueryable());
+
+		var controller = new HomeController(repository.Object);
+
+		// Act.
+
+		var result = controller.Index("C1") as ViewResult;
+		var viewModel = result?.ViewData.Model as ProductsListViewModel;
+		var products = viewModel?.Products.ToList();
+
+		// Assert.
+
+		Assert.NotNull(products);
+		Assert.Equal(3, products.Count);
+
+		Assert.NotNull(products[0]);
+		Assert.Equal("P1", products[0].Name);
+		Assert.Equal("C1", products[0].Category);
+
+		Assert.NotNull(products[1]);
+		Assert.Equal("P3", products[1].Name);
+		Assert.Equal("C1", products[1].Category);
+
+		Assert.NotNull(products[2]);
+		Assert.Equal("P5", products[2].Name);
+		Assert.Equal("C1", products[2].Category);
+	}
+
 	[Theory]
 	[MemberData(nameof(PaginationTestData))]
 	public void CanPaginate(int page, Product[] expectedProcucts)
