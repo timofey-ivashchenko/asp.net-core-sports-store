@@ -41,10 +41,13 @@ public class PageLinkTagHelper : TagHelper
 
 		for (var i = 1; i <= PageModel.TotalPages; i++)
 		{
-			var tag = new TagBuilder("a");
-
-			tag.Attributes["href"] = urlHelper.Action(
-				PageAction, new { page = i});
+			var tag = new TagBuilder("a")
+			{
+				Attributes =
+				{
+					["href"] = urlHelper.Action(PageAction, new { page = i})
+				}
+			};
 
 			if (PageClassesEnabled)
 			{
