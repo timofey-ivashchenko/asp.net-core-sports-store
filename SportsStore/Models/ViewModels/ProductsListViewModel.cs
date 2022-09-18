@@ -2,7 +2,9 @@
 
 public class ProductsListViewModel
 {
-	public PagingInfo PagingInfo { get; set; } = new ();
+	public string? CurrentCategory { get; set; }
+
+	public PagingInfo PagingInfo { get; set; } = new();
 
 	public IEnumerable<Product> Products { get; set; }
 		= Enumerable.Empty<Product>();

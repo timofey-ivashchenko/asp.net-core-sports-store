@@ -13,11 +13,12 @@ public class HomeController : Controller
 
 	public int PageSize { get; set; } = 4;
 
-	public IActionResult Index(int page = 1)
+	public IActionResult Index(string? category, int page = 1)
 	{
 		if (page < 1) page = 1;
 
 		var products = _repository.Products
+			.Where(x => category == null || x.Category == category)
 			.OrderBy(x => x.Id)
 			.Skip((page - 1) * PageSize)
 			.Take(PageSize);
@@ -31,6 +32,7 @@ public class HomeController : Controller
 
 		var model = new ProductsListViewModel
 		{
+			CurrentCategory = category,
 			PagingInfo = pagingInfo,
 			Products = products
 		};

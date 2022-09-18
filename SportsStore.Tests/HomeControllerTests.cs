@@ -55,7 +55,7 @@ public class HomeControllerTests
 
 		// Act.
 
-		var result = controller.Index(page) as ViewResult;
+		var result = controller.Index(null, page) as ViewResult;
 		var model = result?.ViewData.Model as ProductsListViewModel;
 		var actualProducts = model?.Products.ToArray() ?? Array.Empty<Product>();
 
@@ -101,7 +101,7 @@ public class HomeControllerTests
 
 		// Act.
 
-		var result = controller.Index(2) as ViewResult;
+		var result = controller.Index(null, 2) as ViewResult;
 		var model = result?.ViewData.Model as ProductsListViewModel;
 		var pagingInfo = model?.PagingInfo;
 
@@ -132,7 +132,7 @@ public class HomeControllerTests
 
 		// Act.
 
-		var result = controller.Index() as ViewResult;
+		var result = controller.Index(null) as ViewResult;
 		var model = result?.ViewData.Model as ProductsListViewModel;
 		var products = model?.Products.ToArray() ?? Array.Empty<Product>();
 
