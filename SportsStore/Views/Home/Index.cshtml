@@ -1,15 +1,15 @@
 @model ProductsListViewModel
 
-<!-- Òîâàðû -->
+<!-- Ð¢Ð¾Ð²Ð°Ñ€Ñ‹ -->
 
 @foreach (var product in Model.Products)
 {
 	<partial name="ProductSummary" model="product" />
 }
 
-<!-- # Òîâàðû -->
+<!-- # Ð¢Ð¾Ð²Ð°Ñ€Ñ‹ -->
 
-<!-- Íàâèãàöèÿ -->
+<!-- ÐÐ°Ð²Ð¸Ð³Ð°Ñ†Ð¸Ñ -->
 
 <div
 	class="btn-group float-end m-1"
@@ -18,7 +18,8 @@
 	page-class-normal="btn-outline-primary"
 	page-class-selected="btn-primary"
 	page-classes-enabled="true"
-	page-model="@Model.PagingInfo">
+	page-model="@Model.PagingInfo"
+	page-url-category="@Model.CurrentCategory!">
 </div>
 
-<!-- # Íàâèãàöèÿ -->
+<!-- # ÐÐ°Ð²Ð¸Ð³Ð°Ñ†Ð¸Ñ -->
