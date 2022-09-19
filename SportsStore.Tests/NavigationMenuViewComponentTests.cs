@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ViewComponents;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
+using Microsoft.AspNetCore.Routing;
 using SportsStore.Components;
 using SportsStore.Models;
 
@@ -39,5 +41,37 @@ public class NavigationMenuViewComponentTests
 
 		Assert.True(categories.SequenceEqual(
 			new[] { "C1", "C2", "C3", "C4", "C5" }));
+	}
+
+	[Fact]
+	public void IndicatesSelectedCategory()
+	{
+		// Arrange.
+
+		const string expectedCategory = "Electronics";
+
+		var repository = new Mock<IStoreRepository>();
+
+		var component = new NavigationMenuViewComponent(repository.Object)
+		{
+			ViewComponentContext = new ViewComponentContext
+			{
+				ViewContext = new ViewContext
+				{
+					RouteData = new RouteData()
+				}
+			}
+		};
+
+		component.RouteData.Values["category"] = expectedCategory;
+
+		// Act.
+
+		var result = component.Invoke() as ViewViewComponentResult;
+		var actualCategory = result?.ViewData?["SelectedCategory"];
+
+		// Assert.
+
+		Assert.Equal(expectedCategory, actualCategory);
 	}
 }

@@ -10,9 +10,14 @@ public class NavigationMenuViewComponent : ViewComponent
 	public NavigationMenuViewComponent(IStoreRepository repository) =>
 		_repository = repository;
 
-	public IViewComponentResult Invoke() =>
-		View(_repository.Products
+	public IViewComponentResult Invoke()
+	{
+		// ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
+		ViewBag.SelectedCategory = RouteData?.Values["category"]!;
+
+		return View(_repository.Products
 			.Select(x => x.Category)
 			.Distinct()
 			.OrderBy(x => x));
+	}
 }
