@@ -27,7 +27,8 @@ public class HomeController : Controller
 		{
 			CurrentPage = page,
 			ItemsPerPage = PageSize,
-			TotalItems = _repository.Products.Count()
+			TotalItems = _repository.Products.Count(
+				x => category == null || x.Category == category)
 		};
 
 		var model = new ProductsListViewModel
