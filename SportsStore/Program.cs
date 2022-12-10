@@ -11,13 +11,14 @@ builder.Services.AddDbContext<StoreDbContext>(
 
 builder.Services.AddScoped<IStoreRepository, EfStoreRepository>();
 
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
 var app = builder.Build();
 
 app.UseStaticFiles();
 
 app.MapControllerRoute(
-	"category-page",
-	"{category}/page{page:int}",
+	"page", "p{page:int}",
 	new
 	{
 		controller = "Home",
@@ -25,31 +26,20 @@ app.MapControllerRoute(
 	});
 
 app.MapControllerRoute(
-	"page", "page{page:int}",
+	"category", "c/{category}",
 	new
 	{
 		controller = "Home",
-		action = "Index",
-		page = 1
+		action = "Index"
 	});
 
 app.MapControllerRoute(
-	"category", "{category}",
+	"category-page",
+	"c/{category}/p{page:int}",
 	new
 	{
 		controller = "Home",
-		action = "Index",
-		page = 1
-	});
-
-app.MapControllerRoute(
-	"products-pagination",
-	"products/page{page:int}",
-	new
-	{
-		controller = "Home",
-		action = "Index",
-		page = 1
+		action = "Index"
 	});
 
 app.MapDefaultControllerRoute();
