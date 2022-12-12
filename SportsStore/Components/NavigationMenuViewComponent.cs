@@ -16,8 +16,6 @@ public class NavigationMenuViewComponent : ViewComponent
 		ViewBag.SelectedCategory = RouteData?.Values["category"]!;
 
 		return View(_repository.Products
-			.Select(x => x.Category)
-			.Distinct()
-			.OrderBy(x => x));
+			.Select(x => x.Category).Distinct().OrderBy(x => x));
 	}
 }
