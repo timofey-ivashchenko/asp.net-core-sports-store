@@ -11,7 +11,7 @@ public class HomeController : Controller
 	public HomeController(IStoreRepository repository) =>
 		_repository = repository;
 
-	public int PageSize { get; set; } = 4;
+	public int PageSize { get; set; } = 3;
 
 	public IActionResult Index(string? category, int page = 1)
 	{
