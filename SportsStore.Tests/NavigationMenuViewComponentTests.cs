@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewComponents;
-using Microsoft.AspNetCore.Routing;
+﻿using Microsoft.AspNetCore.Mvc.ViewComponents;
 using SportsStore.Components;
 using SportsStore.Models;
 
@@ -35,7 +33,7 @@ public class NavigationMenuViewComponentTests
 
 		var result = component.Invoke() as ViewViewComponentResult;
 		var categories = result?.ViewData?.Model is IEnumerable<string> model
-			? model.ToList() : new List<string>();
+			? model.ToList() : new();
 
 		// Assert.
 
@@ -54,13 +52,7 @@ public class NavigationMenuViewComponentTests
 
 		var component = new NavigationMenuViewComponent(repository.Object)
 		{
-			ViewComponentContext = new ViewComponentContext
-			{
-				ViewContext = new ViewContext
-				{
-					RouteData = new RouteData()
-				}
-			}
+			ViewComponentContext = new() { ViewContext = new() { RouteData = new() }}
 		};
 
 		component.RouteData.Values["category"] = expectedCategory;
