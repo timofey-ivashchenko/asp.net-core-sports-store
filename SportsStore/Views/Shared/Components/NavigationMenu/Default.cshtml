@@ -1,21 +1,14 @@
 ﻿@model IEnumerable<string>
 
 <div class="d-grid gap-2">
-	<a
-		asp-action="Index"
-		asp-controller="Home"
-		asp-route-category=""
-		class="btn btn-outline-secondary">
-		Home
-	</a>
+	<a href="/" class="btn btn-outline-secondary">Home</a>
 	@foreach (var category in Model)
 	{
 		<a
 			class="btn btn-outline-secondary"
 			asp-action="Index"
 			asp-controller="Home"
-			asp-route-category="@category"
-			asp-route-page="1">
+			asp-route-category="@category">
 			@category
 		</a>
 	}
