@@ -7,24 +7,24 @@ namespace SportsStore.Tests;
 
 public class HomeControllerTests
 {
-	public static readonly TheoryData<int, Product[]> PaginationTestData = new ()
+	public static readonly TheoryData<int, Product[]> PaginationTestData = new()
 	{
 		{0, new Product[]
 		{
-			new () {Id = 1, Name = "Product 1"},
-			new () {Id = 2, Name = "Product 2"},
-			new () {Id = 3, Name = "Product 3"}
+			new() {Id = 1, Name = "Product 1"},
+			new() {Id = 2, Name = "Product 2"},
+			new() {Id = 3, Name = "Product 3"}
 		}},
 		{1, new Product[]
 		{
-			new () {Id = 1, Name = "Product 1"},
-			new () {Id = 2, Name = "Product 2"},
-			new () {Id = 3, Name = "Product 3"}
+			new() {Id = 1, Name = "Product 1"},
+			new() {Id = 2, Name = "Product 2"},
+			new() {Id = 3, Name = "Product 3"}
 		}},
 		{2, new Product[]
 		{
-			new () {Id = 4, Name = "Product 4"},
-			new () {Id = 5, Name = "Product 5"}
+			new() {Id = 4, Name = "Product 4"},
+			new() {Id = 5, Name = "Product 5"}
 		}},
 		{3, Array.Empty<Product>()}
 	};
@@ -83,11 +83,11 @@ public class HomeControllerTests
 		mock.Setup(x => x.Products).Returns(
 			new Product[]
 			{
-				new () {Id = 1, Name = "Product 1"},
-				new () {Id = 2, Name = "Product 2"},
-				new () {Id = 3, Name = "Product 3"},
-				new () {Id = 4, Name = "Product 4"},
-				new () {Id = 5, Name = "Product 5"}
+				new() {Id = 1, Name = "Product 1"},
+				new() {Id = 2, Name = "Product 2"},
+				new() {Id = 3, Name = "Product 3"},
+				new() {Id = 4, Name = "Product 4"},
+				new() {Id = 5, Name = "Product 5"}
 			}.AsQueryable()
 		);
 
@@ -167,8 +167,8 @@ public class HomeControllerTests
 		mock.Setup(x => x.Products).Returns(
 			new Product[]
 			{
-				new () {Id = 1, Name = "Product 1"},
-				new () {Id = 2, Name = "Product 2"}
+				new() {Id = 1, Name = "Product 1"},
+				new() {Id = 2, Name = "Product 2"}
 			}.AsQueryable());
 
 		var controller = new HomeController(mock.Object);
