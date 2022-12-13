@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using SportsStore.Infrastructure;
-using SportsStore.Models.ViewModels;
 
 namespace SportsStore.Tests;
 public class PageLinkTagHelperTests
@@ -34,7 +33,7 @@ public class PageLinkTagHelperTests
 		var helper = new PageLinkTagHelper(urlHelperFactory.Object)
 		{
 			PageAction = "Test",
-			PageModel = new PagingInfo
+			PageModel = new()
 			{
 				CurrentPage = 3,
 				ItemsPerPage = 10,
@@ -44,15 +43,12 @@ public class PageLinkTagHelperTests
 		};
 
 		var context = new TagHelperContext(
-			new TagHelperAttributeList(),
-			new Dictionary<object, object>(),
-			string.Empty);
+			new(), new Dictionary<object, object>(), string.Empty);
 
 		var content = new Mock<TagHelperContent>();
 
 		var output = new TagHelperOutput(
-			"div", new TagHelperAttributeList(),
-			(_, _) => Task.FromResult(content.Object));
+			"div", new(), (_, _) => Task.FromResult(content.Object));
 
 		// Act.
 
