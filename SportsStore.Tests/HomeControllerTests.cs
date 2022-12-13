@@ -217,7 +217,7 @@ public class HomeControllerTests
 
 		// Act.
 
-		int? GetCount(HomeController target, string? category)
+		static int? GetCount(HomeController target, string? category)
 			=> (target.Index(category).ViewData.Model as ProductsListViewModel)?.PagingInfo.TotalItems;
 
 		var countAll = GetCount(controller, null);
