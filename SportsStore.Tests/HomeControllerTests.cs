@@ -191,4 +191,49 @@ public class HomeControllerTests
 		Assert.Equal(2, products[1].Id);
 		Assert.Equal("Product 2", products[1].Name);
 	}
+
+	[Fact]
+	public void GeneratesCategorySpecificProductCount()
+	{
+		// Arrange.
+
+		var repository = new Mock<IStoreRepository>();
+
+		repository.Setup(x => x.Products).Returns(
+			new Product[]
+			{
+				new() { Name = "P1", Category = "C3" },
+				new() { Name = "P2", Category = "C1" },
+				new() { Name = "P3", Category = "C5" },
+				new() { Name = "P4", Category = "C2" },
+				new() { Name = "P5", Category = "C1" },
+				new() { Name = "P6", Category = "C4" },
+				new() { Name = "P7", Category = "C1" },
+				new() { Name = "P8", Category = "C2" },
+				new() { Name = "P9", Category = "C1" }
+			}.AsQueryable());
+
+		var controller = new HomeController(repository.Object);
+
+		// Act.
+
+		int? GetCount(HomeController target, string? category)
+			=> (target.Index(category).ViewData.Model as ProductsListViewModel)?.PagingInfo.TotalItems;
+
+		var countAll = GetCount(controller, null);
+		var count1 = GetCount(controller, "C1");
+		var count2 = GetCount(controller, "C2");
+		var count3 = GetCount(controller, "C3");
+		var count4 = GetCount(controller, "C4");
+		var count5 = GetCount(controller, "C5");
+
+		// Assert.
+
+		Assert.Equal(9, countAll);
+		Assert.Equal(4, count1);
+		Assert.Equal(2, count2);
+		Assert.Equal(1, count3);
+		Assert.Equal(1, count4);
+		Assert.Equal(1, count5);
+	}
 }
