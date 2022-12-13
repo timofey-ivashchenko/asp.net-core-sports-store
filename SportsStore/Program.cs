@@ -13,6 +13,8 @@ builder.Services.AddScoped<IStoreRepository, EfStoreRepository>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 app.UseStaticFiles();
@@ -27,6 +29,7 @@ app.MapControllerRoute("page", "p{page:int}",
 	new { controller = "Home", action = "Index", page = 1 });
 
 app.MapDefaultControllerRoute();
+app.MapRazorPages();
 
 SeedData.EnsurePopulated(app);
 
