@@ -13,7 +13,7 @@ public class HomeController : Controller
 
 	public int PageSize { get; set; } = 3;
 
-	public IActionResult Index(string? category, int page = 1)
+	public ViewResult Index(string? category, int page = 1)
 	{
 		if (page < 1) page = 1;
 

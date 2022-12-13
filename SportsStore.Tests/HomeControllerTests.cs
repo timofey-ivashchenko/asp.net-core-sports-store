@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SportsStore.Controllers;
+﻿using SportsStore.Controllers;
 using SportsStore.Models;
 using SportsStore.Models.ViewModels;
 
@@ -50,8 +49,8 @@ public class HomeControllerTests
 
 		// Act.
 
-		var result = controller.Index("C1") as ViewResult;
-		var viewModel = result?.ViewData.Model as ProductsListViewModel;
+		var result = controller.Index("C1");
+		var viewModel = result.ViewData.Model as ProductsListViewModel;
 		var products = viewModel?.Products.ToList();
 
 		// Assert.
@@ -98,8 +97,8 @@ public class HomeControllerTests
 
 		// Act.
 
-		var result = controller.Index(null, page) as ViewResult;
-		var model = result?.ViewData.Model as ProductsListViewModel;
+		var result = controller.Index(null, page);
+		var model = result.ViewData.Model as ProductsListViewModel;
 		var actualProducts = model?.Products.ToArray() ?? Array.Empty<Product>();
 
 		// Assert.
@@ -144,8 +143,8 @@ public class HomeControllerTests
 
 		// Act.
 
-		var result = controller.Index(null, 2) as ViewResult;
-		var model = result?.ViewData.Model as ProductsListViewModel;
+		var result = controller.Index(null, 2);
+		var model = result.ViewData.Model as ProductsListViewModel;
 		var pagingInfo = model?.PagingInfo;
 
 		// Assert.
@@ -175,8 +174,8 @@ public class HomeControllerTests
 
 		// Act.
 
-		var result = controller.Index(null) as ViewResult;
-		var model = result?.ViewData.Model as ProductsListViewModel;
+		var result = controller.Index(null);
+		var model = result.ViewData.Model as ProductsListViewModel;
 		var products = model?.Products.ToArray() ?? Array.Empty<Product>();
 
 		// Assert.
