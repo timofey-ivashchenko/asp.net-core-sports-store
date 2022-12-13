@@ -14,10 +14,13 @@ builder.Services.AddScoped<IStoreRepository, EfStoreRepository>();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
 app.UseStaticFiles();
+app.UseSession();
 
 app.MapControllerRoute("category", "c/{category}",
 	new { controller = "Home", action = "Index", page = 1 });
