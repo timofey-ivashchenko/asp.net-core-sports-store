@@ -7,7 +7,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<StoreDbContext>(
 	options => options.UseSqlServer(
-		builder.Configuration["ConnectionStrings:Main"]!));
+		builder.Configuration["ConnectionStrings:SportsStoreConnection"]!));
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 
