@@ -9,7 +9,7 @@ builder.Services.AddDbContext<StoreDbContext>(
 	options => options.UseSqlServer(
 		builder.Configuration["ConnectionStrings:Main"]!));
 
-builder.Services.AddScoped<IStoreRepository, EfStoreRepository>();
+builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
