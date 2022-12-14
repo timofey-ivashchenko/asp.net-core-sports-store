@@ -16,7 +16,7 @@ class StoreDbContextModelSnapshot : ModelSnapshot
 			.Entity<Product>(builder =>
 			{
 				builder
-					.Property<long?>(nameof(Product.Id))
+					.Property<long?>(nameof(Product.ProductID))
 					.HasColumnType("bigint")
 					.UseIdentityColumn()
 					.ValueGeneratedOnAdd();
@@ -43,6 +43,6 @@ class StoreDbContextModelSnapshot : ModelSnapshot
 
 				builder
 					.ToTable("Products")
-					.HasKey(nameof(Product.Id));
+					.HasKey(nameof(Product.ProductID));
 			});
 }

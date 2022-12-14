@@ -19,7 +19,7 @@ public class HomeController : Controller
 
 		var products = _repository.Products
 			.Where(x => category == null || x.Category == category)
-			.OrderBy(x => x.Id)
+			.OrderBy(x => x.ProductID)
 			.Skip((page - 1) * PageSize)
 			.Take(PageSize);
 

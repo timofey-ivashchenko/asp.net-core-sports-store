@@ -17,7 +17,7 @@ public class Initial : Migration
 			.Entity<Product>(builder =>
 			{
 				builder
-					.Property<long?>(nameof(Product.Id))
+					.Property<long?>(nameof(Product.ProductID))
 					.HasColumnType("bigint")
 					.UseIdentityColumn(1L, 1)
 					.ValueGeneratedOnAdd();
@@ -44,7 +44,7 @@ public class Initial : Migration
 
 				builder
 					.ToTable("Products")
-					.HasKey(nameof(Product.Id));
+					.HasKey(nameof(Product.ProductID));
 			});
 
 	protected override void Down(MigrationBuilder migrationBuilder) =>

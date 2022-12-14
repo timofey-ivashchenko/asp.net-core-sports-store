@@ -8,7 +8,7 @@ public class Product
 
 	public string Description { get; set; } = string.Empty;
 
-	public long? Id { get; set; }
+	public long? ProductID { get; set; }
 
 	public string Name { get; set; } = string.Empty;
 

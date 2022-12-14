@@ -10,20 +10,20 @@ public class HomeControllerTests
 	{
 		{0, new Product[]
 		{
-			new() {Id = 1, Name = "Product 1"},
-			new() {Id = 2, Name = "Product 2"},
-			new() {Id = 3, Name = "Product 3"}
+			new() {ProductID = 1, Name = "Product 1"},
+			new() {ProductID = 2, Name = "Product 2"},
+			new() {ProductID = 3, Name = "Product 3"}
 		}},
 		{1, new Product[]
 		{
-			new() {Id = 1, Name = "Product 1"},
-			new() {Id = 2, Name = "Product 2"},
-			new() {Id = 3, Name = "Product 3"}
+			new() {ProductID = 1, Name = "Product 1"},
+			new() {ProductID = 2, Name = "Product 2"},
+			new() {ProductID = 3, Name = "Product 3"}
 		}},
 		{2, new Product[]
 		{
-			new() {Id = 4, Name = "Product 4"},
-			new() {Id = 5, Name = "Product 5"}
+			new() {ProductID = 4, Name = "Product 4"},
+			new() {ProductID = 5, Name = "Product 5"}
 		}},
 		{3, Array.Empty<Product>()}
 	};
@@ -82,11 +82,11 @@ public class HomeControllerTests
 		mock.Setup(x => x.Products).Returns(
 			new Product[]
 			{
-				new() {Id = 1, Name = "Product 1"},
-				new() {Id = 2, Name = "Product 2"},
-				new() {Id = 3, Name = "Product 3"},
-				new() {Id = 4, Name = "Product 4"},
-				new() {Id = 5, Name = "Product 5"}
+				new() {ProductID = 1, Name = "Product 1"},
+				new() {ProductID = 2, Name = "Product 2"},
+				new() {ProductID = 3, Name = "Product 3"},
+				new() {ProductID = 4, Name = "Product 4"},
+				new() {ProductID = 5, Name = "Product 5"}
 			}.AsQueryable()
 		);
 
@@ -111,7 +111,7 @@ public class HomeControllerTests
 			var actualProduct = actualProducts[i];
 
 			Assert.NotNull(actualProduct);
-			Assert.Equal(expectedProduct.Id, actualProduct.Id);
+			Assert.Equal(expectedProduct.ProductID, actualProduct.ProductID);
 			Assert.Equal(expectedProduct.Name, actualProduct.Name);
 			Assert.Equal(expectedProduct.Description, actualProduct.Description);
 			Assert.Equal(expectedProduct.Category, actualProduct.Category);
@@ -129,11 +129,11 @@ public class HomeControllerTests
 		repository.Setup(x => x.Products)
 			.Returns(new Product[]
 			{
-				new() { Id = 1, Name = "Product 1" },
-				new() { Id = 2, Name = "Product 2" },
-				new() { Id = 3, Name = "Product 3" },
-				new() { Id = 4, Name = "Product 4" },
-				new() { Id = 5, Name = "Product 5" }
+				new() { ProductID = 1, Name = "Product 1" },
+				new() { ProductID = 2, Name = "Product 2" },
+				new() { ProductID = 3, Name = "Product 3" },
+				new() { ProductID = 4, Name = "Product 4" },
+				new() { ProductID = 5, Name = "Product 5" }
 			}.AsQueryable());
 
 		var controller = new HomeController(repository.Object)
@@ -166,8 +166,8 @@ public class HomeControllerTests
 		mock.Setup(x => x.Products).Returns(
 			new Product[]
 			{
-				new() {Id = 1, Name = "Product 1"},
-				new() {Id = 2, Name = "Product 2"}
+				new() {ProductID = 1, Name = "Product 1"},
+				new() {ProductID = 2, Name = "Product 2"}
 			}.AsQueryable());
 
 		var controller = new HomeController(mock.Object);
@@ -184,11 +184,11 @@ public class HomeControllerTests
 		Assert.Equal(2, products.Length);
 
 		Assert.NotNull(products[0]);
-		Assert.Equal(1, products[0].Id);
+		Assert.Equal(1, products[0].ProductID);
 		Assert.Equal("Product 1", products[0].Name);
 
 		Assert.NotNull(products[1]);
-		Assert.Equal(2, products[1].Id);
+		Assert.Equal(2, products[1].ProductID);
 		Assert.Equal("Product 2", products[1].Name);
 	}
 
