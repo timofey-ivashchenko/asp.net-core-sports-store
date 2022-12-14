@@ -55,7 +55,7 @@ public class Initial : Migration
 			name: "Products",
 			columns: table => new
 			{
-				Id = table
+				ProductID = table
 					.Column<long>(type: "bigint", nullable: false)
 					.Annotation("SqlServer:Identity", "1, 1"),
 				Name = table.Column<string>(
@@ -69,6 +69,6 @@ public class Initial : Migration
 			},
 			constraints: table =>
 			{
-				table.PrimaryKey("PK_Products", x => x.Id);
+				table.PrimaryKey("PK_Products", x => x.ProductID);
 			});
 }
