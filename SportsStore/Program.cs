@@ -23,13 +23,13 @@ app.UseStaticFiles();
 app.UseSession();
 
 app.MapControllerRoute("category", "c/{category}",
-	new { Controller = "Home", action = "Index", productPage = 1 });
+	new { controller = "Home", action = "Index", productPage = 1 });
 
 app.MapControllerRoute("category-page", "c/{category}/p{productPage:int}",
-	new { Controller = "Home", action = "Index", productPage = 1 });
+	new { controller = "Home", action = "Index", productPage = 1 });
 
 app.MapControllerRoute("page", "p{productPage:int}",
-	new { Controller = "Home", action = "Index", productPage = 1 });
+	new { controller = "Home", action = "Index", productPage = 1 });
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
