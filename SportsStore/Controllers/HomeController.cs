@@ -13,19 +13,19 @@ public class HomeController : Controller
 
 	public int PageSize { get; set; } = 3;
 
-	public ViewResult Index(string? category, int page = 1)
+	public ViewResult Index(string? category, int productPage = 1)
 	{
-		if (page < 1) page = 1;
+		if (productPage < 1) productPage = 1;
 
 		var products = _repository.Products
 			.Where(x => category == null || x.Category == category)
 			.OrderBy(x => x.ProductID)
-			.Skip((page - 1) * PageSize)
+			.Skip((productPage - 1) * PageSize)
 			.Take(PageSize);
 
 		var pagingInfo = new PagingInfo
 		{
-			CurrentPage = page,
+			CurrentPage = productPage,
 			ItemsPerPage = PageSize,
 			TotalItems = _repository.Products.Count(
 				x => category == null || x.Category == category)

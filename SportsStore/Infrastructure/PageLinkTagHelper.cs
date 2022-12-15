@@ -46,7 +46,7 @@ public class PageLinkTagHelper : TagHelper
 		{
 			var tag = new TagBuilder("a");
 
-			PageUrlValues["page"] = i;
+			PageUrlValues["productPage"] = i;
 
 			tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
 
