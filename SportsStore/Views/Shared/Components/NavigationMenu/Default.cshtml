@@ -1,23 +1,21 @@
 ﻿@model IEnumerable<string>
-
 @{ var selectedCategory = ViewBag.SelectedCategory as string; }
-
 <div class="d-grid gap-2">
-	<a href="/" class="btn btn-outline-secondary">Home</a>
-
-	@foreach (var category in Model)
-	{
-		var className = category.Equals(
-			selectedCategory, StringComparison.OrdinalIgnoreCase)
-			? "btn-primary" : "btn-outline-secondary";
-
-		<a
-			class="btn @className"
-			asp-action="Index"
-			asp-controller="Home"
-			asp-route-category="@category">
-			@category
-		</a>
-	}
-
+	<a
+		asp-action="Index"
+		asp-controller="Home"
+		class="btn btn-outline-secondary"
+		>Home</a>
+@foreach (var category in Model)
+{
+	var className = category.Equals(
+		selectedCategory, StringComparison.OrdinalIgnoreCase)
+		? "btn-primary" : "btn-outline-secondary";
+	<a
+		asp-action="Index"
+		asp-controller="Home"
+		asp-route-category="@category"
+		class="btn @className"
+		>@category</a>
+}
 </div>

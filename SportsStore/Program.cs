@@ -22,14 +22,17 @@ var app = builder.Build();
 app.UseStaticFiles();
 app.UseSession();
 
+app.MapControllerRoute("website-home", "",
+	new { controller = "Home", action = "Index", category = "", productPage = 1 });
+
 app.MapControllerRoute("category", "c/{category}",
 	new { controller = "Home", action = "Index", productPage = 1 });
 
 app.MapControllerRoute("category-page", "c/{category}/p{productPage:int}",
-	new { controller = "Home", action = "Index", productPage = 1 });
+	new { controller = "Home", action = "Index" });
 
 app.MapControllerRoute("page", "p{productPage:int}",
-	new { controller = "Home", action = "Index", productPage = 1 });
+	new { controller = "Home", action = "Index", category = "" });
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
