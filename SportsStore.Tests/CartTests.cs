@@ -136,4 +136,47 @@ public class CartTests
 		cart.RemoveLine(product2);
 		Assert.Empty(cart.Lines);
 	}
+
+	[Fact]
+	public void CanCalculateCartTotal()
+	{
+		// Arrange.
+		
+		var product1 = new Product
+		{
+			ProductID = 1,
+			Name = "Apple iPhone",
+			Category = "Смартфоны",
+			Price = 2500
+		};
+
+		var product2 = new Product
+		{
+			ProductID = 2,
+			Name = "Porsche Cayenne",
+			Category = "Автомобили",
+			Price = 150000
+		};
+
+		var product3 = new Product
+		{
+			ProductID = 3,
+			Name = "Квартира на ж/м Коммунар",
+			Category = "Недвижимость",
+			Price = 100000
+		};
+
+		var cart = new Cart();
+		cart.AddItem(product1, 6);
+		cart.AddItem(product2, 2);
+		cart.AddItem(product3, 2);
+
+		// Act.
+
+		var totalValue = cart.ComputeTotalValue();
+
+		// Assert.
+
+		Assert.Equal(515000, totalValue);
+	}
 }
