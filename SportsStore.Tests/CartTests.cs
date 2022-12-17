@@ -79,4 +79,61 @@ public class CartTests
 		Assert.Same(product3, cart.Lines[2].Product);
 		Assert.Equal(2, cart.Lines[2].Quantity);
 	}
+
+	[Fact]
+	public void CanRemoveLine()
+	{
+		// Arrange.
+		
+		var product1 = new Product
+		{
+			ProductID = 1,
+			Name = "Nike Air Zoom Pegasus 39 By You",
+			Category = "Спортивная обувь"
+		};
+
+		var product2 = new Product
+		{
+			ProductID = 2,
+			Name = "Fender Stratocaster USA",
+			Category = "Электрогитары"
+		};
+
+		var product3 = new Product
+		{
+			ProductID = 3,
+			Name = "Beats Studio 3",
+			Category = "Наушники"
+		};
+
+		var cart = new Cart();
+		cart.AddItem(product1, 1);
+		cart.AddItem(product2, 1);
+		cart.AddItem(product3, 1);
+
+		Assert.Equal(3, cart.Lines.Count);
+		Assert.Same(product1, cart.Lines[0].Product);
+		Assert.Equal(1, cart.Lines[0].Quantity);
+		Assert.Same(product2, cart.Lines[1].Product);
+		Assert.Equal(1, cart.Lines[1].Quantity);
+		Assert.Same(product3, cart.Lines[2].Product);
+		Assert.Equal(1, cart.Lines[2].Quantity);
+
+		// Acts & asserts.
+
+		cart.RemoveLine(product1);
+		Assert.Equal(2, cart.Lines.Count);
+		Assert.Same(product2, cart.Lines[0].Product);
+		Assert.Equal(1, cart.Lines[0].Quantity);
+		Assert.Same(product3, cart.Lines[1].Product);
+		Assert.Equal(1, cart.Lines[1].Quantity);
+
+		cart.RemoveLine(product3);
+		Assert.Single(cart.Lines);
+		Assert.Same(product2, cart.Lines[0].Product);
+		Assert.Equal(1, cart.Lines[0].Quantity);
+
+		cart.RemoveLine(product2);
+		Assert.Empty(cart.Lines);
+	}
 }
