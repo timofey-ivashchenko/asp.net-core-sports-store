@@ -128,6 +128,51 @@ public class CartTests
 	}
 
 	[Fact]
+	public void CanClearContents()
+	{
+		// Arrange.
+
+		var product1 = new Product
+		{
+			ProductID = 1,
+			Name = "Nike Air Zoom Pegasus 39 By You",
+			Category = "Спортивная обувь",
+			Price = 160
+		};
+
+		var product2 = new Product
+		{
+			ProductID = 2,
+			Name = "Fender Stratocaster USA",
+			Category = "Электрогитары",
+			Price = 3100
+		};
+
+		var product3 = new Product
+		{
+			ProductID = 3,
+			Name = "Beats Studio 3",
+			Category = "Наушники",
+			Price = 550
+		};
+
+		var cart = new Cart();
+		cart.AddItem(product1, 1);
+		cart.AddItem(product2, 1);
+		cart.AddItem(product3, 1);
+
+		Assert.Equal(3, cart.Lines.Count);
+
+		// Act.
+
+		cart.Clear();
+
+		// Assert.
+
+		Assert.Empty(cart.Lines);
+	}
+
+	[Fact]
 	public void CanRemoveLine()
 	{
 		// Arrange.
