@@ -7,4 +7,7 @@ public class CartLine
 	public Product Product { get; set; } = new();
 
 	public int Quantity { get; set; }
+
+	public decimal ComputeSubtotalValue() =>
+		Quantity * Product.Price;
 }
