@@ -1,5 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SportsStore.Models;
+using System.Globalization;
+
+var culture = new CultureInfo("en-US");
+CultureInfo.CurrentCulture = culture;
+CultureInfo.CurrentUICulture = culture;
+CultureInfo.DefaultThreadCurrentCulture = culture;
+CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 var builder = WebApplication.CreateBuilder(args);
 
