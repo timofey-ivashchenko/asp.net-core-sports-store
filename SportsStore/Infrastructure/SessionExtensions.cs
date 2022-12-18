@@ -4,15 +4,15 @@ namespace SportsStore.Infrastructure;
 
 public static class SessionExtensions
 {
-	public static T? GetJson<T>(this ISession session, string key)
+	public static T? GetObject<T>(this ISession session, string key)
 	{
-		var sessionData = session.GetString(key);
+		var objectJson = session.GetString(key);
 
-		return sessionData is not null
-			? JsonSerializer.Deserialize<T>(sessionData) : default;
+		return objectJson is not null
+			? JsonSerializer.Deserialize<T>(objectJson) : default;
 	}
 
-	public static void SetJson(
+	public static void SetObject(
 		this ISession session, string key, object value) =>
 		session.SetString(key, JsonSerializer.Serialize(value));
 }
