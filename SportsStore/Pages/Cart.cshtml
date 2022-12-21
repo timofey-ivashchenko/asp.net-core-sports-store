@@ -10,6 +10,7 @@
 			<th class="text-start">Item</th>
 			<th class="text-end">Price</th>
 			<th class="text-end">Subtotal</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,6 +21,13 @@
 				<td class="text-start">@line.Product.Name</td>
 				<td class="text-end">@line.Product.Price.ToString("C")</td>
 				<td class="text-end">@line.ComputeSubtotalValue().ToString("C")</td>
+				<td class="text-center">
+					<form asp-page-handler="Remove" method="post">
+						<input type="hidden" name="ProductID" value="@line.Product.ProductID" />
+						<input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+						<button type="submit" class="btn btn-sm btn-danger">Remove</button>
+					</form>
+				</td>
 			</tr>
 		}
 	</tbody>
