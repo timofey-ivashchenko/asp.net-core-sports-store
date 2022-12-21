@@ -47,7 +47,7 @@ public class CartPageTests
 
 		// Act.
 
-		var cartModel = new CartModel(repository.Object)
+		var cartModel = new CartModel(repository.Object, cart)
 		{
 			PageContext = new(new()
 			{
@@ -97,7 +97,7 @@ public class CartPageTests
 
 		// Act.
 
-		var cartModel = new CartModel(repository.Object)
+		var cartModel = new CartModel(repository.Object, cart)
 		{
 			PageContext = new(new()
 			{
