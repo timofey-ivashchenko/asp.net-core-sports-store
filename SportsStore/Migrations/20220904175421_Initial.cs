@@ -9,66 +9,66 @@ namespace SportsStore.Migrations;
 [Migration("20220904175421_Initial")]
 public class Initial : Migration
 {
-	protected override void BuildTargetModel(ModelBuilder modelBuilder) =>
+	protected override void BuildTargetModel(ModelBuilder modelBuilder)
+	{
 		modelBuilder
-			.HasAnnotation("ProductVersion", "6.0.8")
+			.HasAnnotation("ProductVersion", "7.0.1")
 			.HasAnnotation("Relational:MaxIdentifierLength", 128)
-			.UseIdentityColumns(1L, 1)
-			.Entity<Product>(builder =>
-			{
-				builder
-					.Property<long?>(nameof(Product.ProductID))
-					.HasColumnType("bigint")
-					.UseIdentityColumn(1L, 1)
-					.ValueGeneratedOnAdd();
+			.UseIdentityColumns();
 
-				builder
-					.Property<string>(nameof(Product.Name))
-					.HasColumnType("nvarchar(max)")
-					.IsRequired();
+		modelBuilder.Entity<Product>(entity =>
+		{
+			entity
+				.Property<long?>("ProductID")
+				.HasColumnType("bigint")
+				.UseIdentityColumn()
+				.ValueGeneratedOnAdd();
 
-				builder
-					.Property<string>(nameof(Product.Description))
-					.HasColumnType("nvarchar(max)")
-					.IsRequired();
+			entity
+				.Property<string>("Category")
+				.HasColumnType("nvarchar(max)")
+				.IsRequired();
 
-				builder
-					.Property<string>(nameof(Product.Category))
-					.HasColumnType("nvarchar(max)")
-					.IsRequired();
+			entity
+				.Property<string>("Description")
+				.HasColumnType("nvarchar(max)")
+				.IsRequired();
 
-				builder
-					.Property<decimal>(nameof(Product.Price))
-					.HasColumnType("decimal(8,2)")
-					.IsRequired();
+			entity
+				.Property<string>("Name")
+				.HasColumnType("nvarchar(max)")
+				.IsRequired();
 
-				builder
-					.ToTable("Products")
-					.HasKey(nameof(Product.ProductID));
-			});
+			entity
+				.Property<decimal>("Price")
+				.HasColumnType("decimal(8,2)");
 
-	protected override void Down(MigrationBuilder migrationBuilder) =>
+			entity.HasKey("ProductID");
+			entity.ToTable("Products");
+		});
+	}
+
+	protected override void Down(MigrationBuilder migrationBuilder)
+	{
 		migrationBuilder.DropTable(name: "Products");
+	}
 
-	protected override void Up(MigrationBuilder migrationBuilder) =>
+	protected override void Up(MigrationBuilder migrationBuilder)
+	{
 		migrationBuilder.CreateTable(
 			name: "Products",
 			columns: table => new
 			{
-				ProductID = table
-					.Column<long>(type: "bigint", nullable: false)
+				ProductID = table.Column<long>(type: "bigint", nullable: false)
 					.Annotation("SqlServer:Identity", "1, 1"),
-				Name = table.Column<string>(
-					type: "nvarchar(max)", nullable: false),
-				Description = table.Column<string>(
-					type: "nvarchar(max)", nullable: false),
-				Category = table.Column<string>(
-					type: "nvarchar(max)", nullable: false),
-				Price = table.Column<decimal>(
-					type: "decimal(8,2)", nullable: false)
+				Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+				Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+				Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+				Price = table.Column<decimal>(type: "decimal(8,2)", nullable: false)
 			},
 			constraints: table =>
 			{
 				table.PrimaryKey("PK_Products", x => x.ProductID);
 			});
+	}
 }
