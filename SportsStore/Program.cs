@@ -17,6 +17,7 @@ builder.Services.AddDbContext<StoreDbContext>(
 		builder.Configuration["ConnectionStrings:SportsStoreConnection"]!));
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
+builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
