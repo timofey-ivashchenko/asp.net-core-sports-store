@@ -11,14 +11,18 @@ public class OrderControllerTests
 	{
 		// Arrange.
 
+		// Создаём фиктивный репозиторий заказов.
 		var repository = new Mock<IOrderRepository>();
+
+		// Создаём пустую корзину.
 		var cart = new Cart();
+
+		// Создаём контроллер заказов.
 		var controller = new OrderController(repository.Object, cart);
-		var order = new Order();
 
 		// Act.
 
-		var result = controller.Checkout(order) as ViewResult;
+		var result = controller.Checkout(new()) as ViewResult;
 
 		// Assert.
 
