@@ -36,13 +36,13 @@ public class OrderControllerTests
 		// Проверяем, что пользователь будет перенаправлен.
 		Assert.NotNull(result);
 		// Проверяем страницу, на которую будет перенаправлен пользователь.
-		Assert.Equal("/completed", result?.PageName);
+		Assert.Equal("/completed", result.PageName);
 		// Проверяем количество параметров в строке запроса.
-		Assert.Equal(1, result?.RouteValues?.Count);
+		Assert.Equal(1, result.RouteValues?.Count);
 		// Проверяем наличие параметра orderId.
-		Assert.True(result?.RouteValues?.ContainsKey("orderId"));
+		Assert.True(result.RouteValues?.ContainsKey("orderId"));
 		// Проверяем значение параметра orderId.
-		Assert.Equal(order.OrderID, result?.RouteValues?["orderId"]);
+		Assert.Equal(order.OrderID, result.RouteValues?["orderId"]);
 	}
 
 	[Fact]
