@@ -31,4 +31,38 @@ public class OrderControllerTests
 		// Проверяем, что в представление передаётся недействительная модель.
 		Assert.False(result?.ViewData.ModelState.IsValid);
 	}
+
+	[Fact]
+	public void CannotCheckoutInvalidShippingDetails()
+	{
+		// Arrange.
+
+		// Создаём фиктивный репозиторий заказов.
+		var repository = new Mock<IOrderRepository>();
+
+		// Создаём корзину с одним элементом.
+		var cart = new Cart();
+		cart.AddItem(new(), 1);
+
+		// Создаём контроллер заказов.
+		var controller = new OrderController(repository.Object, cart);
+
+		// Добавляем ошибку модели.
+		controller.ModelState.AddModelError("error", "error");
+
+		// Act.
+
+		var result = controller.Checkout(new()) as ViewResult;
+
+		// Assert.
+
+		// Проверяем, что заказ не был сохранён.
+		repository.Verify(x => x.SaveOrder(It.IsAny<Order>()), Times.Never);
+
+		// Проверяем, что метод возвращает представление по умолчанию.
+		Assert.True(string.IsNullOrEmpty(result?.ViewName));
+
+		// Проверяем, что в представление передаётся недействительная модель.
+		Assert.False(result?.ViewData.ModelState.IsValid);
+	}
 }
