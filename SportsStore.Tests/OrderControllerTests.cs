@@ -61,6 +61,7 @@ public class OrderControllerTests
 
 		// Act.
 
+		// Оформляем заказ.
 		var result = controller.Checkout(new()) as ViewResult;
 
 		// Assert.
@@ -95,6 +96,7 @@ public class OrderControllerTests
 
 		// Act.
 
+		// Оформляем заказ.
 		var result = controller.Checkout(new()) as ViewResult;
 
 		// Assert.
