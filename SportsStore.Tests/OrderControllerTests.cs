@@ -7,6 +7,45 @@ namespace SportsStore.Tests;
 public class OrderControllerTests
 {
 	[Fact]
+	public void CanCheckoutAndSubmitOrder()
+	{
+		// Arrange.
+
+		// Создаём фиктивный репозиторий заказов.
+		var repository = new Mock<IOrderRepository>();
+
+		// Создаём корзину с одним элементом.
+		var cart = new Cart();
+		cart.AddItem(new(), 1);
+
+		// Создаём контроллер заказов.
+		var controller = new OrderController(repository.Object, cart);
+
+		// Создаём заказ с известным идентификатором.
+		var order = new Order { OrderID = 13 };
+
+		// Act.
+
+		// Оформляем заказ.
+		var result = controller.Checkout(order) as RedirectToPageResult;
+
+		// Assert.
+
+		// Проверяем, что заказ сохраняется один раз.
+		repository.Verify(x => x.SaveOrder(It.IsAny<Order>()), Times.Once);
+		// Проверяем, что пользователь будет перенаправлен.
+		Assert.NotNull(result);
+		// Проверяем страницу, на которую будет перенаправлен пользователь.
+		Assert.Equal("/completed", result?.PageName);
+		// Проверяем количество параметров в строке запроса.
+		Assert.Equal(1, result?.RouteValues?.Count);
+		// Проверяем наличие параметра orderId.
+		Assert.True(result?.RouteValues?.ContainsKey("orderId"));
+		// Проверяем значение параметра orderId.
+		Assert.Equal(order.OrderID, result?.RouteValues?["orderId"]);
+	}
+
+	[Fact]
 	public void CannotCheckoutEmptyCart()
 	{
 		// Arrange.
