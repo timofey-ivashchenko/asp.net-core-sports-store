@@ -29,6 +29,9 @@ public class Order
 	[BindNever]
 	public int OrderID { get; set; }
 
+	[BindNever]
+	public bool Shipped { get; set; }
+
 	[Required(ErrorMessage = "Please enter a state name.")]
 	public string? State { get; set; }
 
