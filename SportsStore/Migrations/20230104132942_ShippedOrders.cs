@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using SportsStore.Models;
 
 namespace SportsStore.Migrations;
 
-// ReSharper disable UnusedMember.Global
 [DbContext(typeof(StoreDbContext))]
-public class StoreDbContextModelSnapshot : ModelSnapshot
+[Migration("20230104132942_ShippedOrders")]
+public class ShippedOrders : Migration
 {
-	protected override void BuildModel(ModelBuilder modelBuilder)
+	protected override void BuildTargetModel(ModelBuilder modelBuilder)
 	{
 		modelBuilder
 			.HasAnnotation("ProductVersion", "7.0.1")
@@ -150,5 +151,22 @@ public class StoreDbContextModelSnapshot : ModelSnapshot
 		{
 			entity.Navigation("Lines");
 		});
+	}
+
+	protected override void Down(MigrationBuilder migrationBuilder)
+	{
+		migrationBuilder.DropColumn(
+			name: "Shipped",
+			table: "Orders");
+	}
+
+	protected override void Up(MigrationBuilder migrationBuilder)
+	{
+		migrationBuilder.AddColumn<bool>(
+			name: "Shipped",
+			table: "Orders",
+			type: "bit",
+			nullable: false,
+			defaultValue: false);
 	}
 }
