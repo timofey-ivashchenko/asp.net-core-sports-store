@@ -10,16 +10,18 @@ public class EFStoreRepository : IStoreRepository
 
 	public void CreateProduct(Product product)
 	{
-		throw new NotImplementedException();
+		_context.Add(product);
+		_context.SaveChanges();
 	}
 
 	public void DeleteProduct(Product product)
 	{
-		throw new NotImplementedException();
+		_context.Remove(product);
+		_context.SaveChanges();
 	}
 
 	public void SaveProduct(Product product)
 	{
-		throw new NotImplementedException();
+		_context.SaveChanges();
 	}
 }
