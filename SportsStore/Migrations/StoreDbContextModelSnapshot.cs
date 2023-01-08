@@ -101,7 +101,7 @@ public class StoreDbContextModelSnapshot : ModelSnapshot
 		modelBuilder.Entity<Product>(entity =>
 		{
 			entity
-				.Property<long?>("ProductID")
+				.Property<long>("ProductID")
 				.HasColumnType("bigint")
 				.UseIdentityColumn()
 				.ValueGeneratedOnAdd();
