@@ -1,0 +1,79 @@
+@page "/admin/products/edit/{id:long}"
+@page "/admin/products/create"
+@inherits OwningComponentBase<IStoreRepository>
+
+@code
+{
+	[Parameter]
+	public long ID { get; set; }
+
+	[Inject]
+	NavigationManager? NavigationManager { get; set; }
+
+	Product Product { get; set; } = new();
+
+	IStoreRepository Repository => Service;
+
+	string ThemeColor => ID == 0 ? "primary" : "warning";
+
+	string TitleText => ID == 0 ? "Create" : "Edit";
+
+	protected override void OnParametersSet()
+	{
+		if (ID != 0) Product = Repository.Products.FirstOrDefault(x => x.ProductID == ID) ?? new();
+	}
+
+	void SaveProduct()
+	{
+		if (ID == 0)
+			Repository.CreateProduct(Product);
+		else
+			Repository.SaveProduct(Product);
+
+		NavigationManager?.NavigateTo("/admin/products");
+	}
+}
+
+<style>
+	div.validation-message {
+		color: rgb(220, 53, 69);
+		font-weight: 500;
+	}
+</style>
+
+<h4 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Product</h4>
+
+<EditForm Model="Product" OnValidSubmit="SaveProduct">
+	<DataAnnotationsValidator />
+	@if (Product.ProductID != 0)
+	{
+		<div>
+			<label>ID</label>
+			<input class="form-control" disabled value="@Product.ProductID" />
+		</div>
+	}
+	<div class="mt-2">
+		<label>Name</label>
+		<ValidationMessage For="@(() => Product.Name)" />
+		<InputText class="form-control" @bind-Value="Product.Name" />
+	</div>
+	<div class="mt-2">
+		<label>Description</label>
+		<ValidationMessage For="@(() => Product.Description)" />
+		<InputText class="form-control" @bind-Value="Product.Description" />
+	</div>
+	<div class="mt-2">
+		<label>Category</label>
+		<ValidationMessage For="@(() => Product.Category)" />
+		<InputText class="form-control" @bind-Value="Product.Category" />
+	</div>
+	<div class="mt-2">
+		<label>Price</label>
+		<ValidationMessage For="@(() => Product.Price)" />
+		<InputNumber class="form-control" @bind-Value="Product.Price" />
+	</div>
+	<div class="mt-2">
+		<button type="submit" class="btn btn-@ThemeColor">Save</button>
+		<NavLink class="btn btn-secondary" href="/admin/products">Cancel</NavLink>
+	</div>
+</EditForm>
