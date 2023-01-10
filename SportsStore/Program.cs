@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SportsStore.Models;
 using System.Globalization;
 
@@ -14,7 +15,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<StoreDbContext>(
 	options => options.UseSqlServer(
-		builder.Configuration["ConnectionStrings:SportsStoreConnection"]!));
+		builder.Configuration["ConnectionStrings:Store"]!));
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
@@ -30,10 +31,20 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddServerSideBlazor();
 
+builder.Services.AddDbContext<AppIdentityDbContext>(
+	options => options.UseSqlServer(
+		builder.Configuration["ConnectionStrings:Identity"]));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+	.AddEntityFrameworkStores<AppIdentityDbContext>();
+
 var app = builder.Build();
 
 app.UseStaticFiles();
 app.UseSession();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute("website-home", "",
 	new { controller = "Home", action = "Index", category = "", productPage = 1 });
