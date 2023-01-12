@@ -15,7 +15,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<StoreDbContext>(
 	options => options.UseSqlServer(
-		builder.Configuration["ConnectionStrings:Store"]!));
+		builder.Configuration["ConnectionStrings:Main"]!));
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
