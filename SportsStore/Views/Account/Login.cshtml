@@ -1,0 +1,56 @@
+@model LoginModel
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+	<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<title>SportsStore</title>
+
+</head>
+
+<body>
+
+	<div class="bg-dark text-white p-2">
+		<span class="navbar-brand ms-2">SPORTS STORE</span>
+	</div>
+
+	<div class="m-1 p-1">
+
+		<div asp-validation-summary="All" class="text-danger"></div>
+
+		<form asp-controller="Account" asp-action="Login" method="post">
+
+			<input type="hidden" asp-for="ReturnUrl" />
+
+			<div class="mt-2">
+				<label asp-for="Name"></label>
+				@* TODO: По-моему, этот div тут не нужен. *@
+				<div asp-validation-for="Name" class="text-danger"></div>
+				<input asp-for="Name" class="form-control" />
+			</div>
+
+			<div class="mt-2">
+				<label asp-for="Password"></label>
+				@* TODO: По-моему, этот div тут не нужен. *@
+				<div asp-validation-for="Password" class="text-danger"></div>
+				<input asp-for="Password" type="password" class="form-control" />
+			</div>
+
+			<button type="submit" class="btn btn-primary mt-3">Log In</button>
+
+		</form>
+
+	</div>
+
+</body>
+
+</html>
