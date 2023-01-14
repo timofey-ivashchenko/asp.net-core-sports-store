@@ -19,7 +19,7 @@ public class AccountController : Controller
 		_signInManager = signInManager;
 	}
 
-	public ViewResult Login(string returnUrl) =>
+	public ViewResult Login(string returnUrl = "/") =>
 		View(new LoginModel { ReturnUrl = returnUrl });
 
 	[HttpPost]
